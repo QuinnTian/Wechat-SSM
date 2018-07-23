@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tk.mybatis.web.mapper.MessageMapper">
+    <resultMap id="messageMap" type="tk.mybatis.web.model.Message">
+        <id property="msgId" column="msg_id"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="fromUserName" column="from_username"/>
+        <result property="toUserName" column="to_username"/>
+        <result property="msgType" column="msg_type"/>
+        <result property="content" column="content"/>
+        <result property="picUrl" column="pic_url"/>
+        <result property="mediaId" column="media_id"/>
+        <result property="format" column="format"/>
+        <result property="recognition" column="recognition"/>
+        <result property="thumbMediaId" column="thumb_media_id"/>
+        <result property="locationX" column="location_x"/>
+        <result property="locationY" column="location_y"/>
+        <result property="scale" column="scale"/>
+        <result property="label" column="label"/>
+        <result property="title" column="title"/>
+        <result property="description" column="description"/>
+        <result property="url" column="url"/>
+        <result property="keyMessage" column="keymessage"/>
+</resultMap>
+    <select id="selectAll" resultMap="messageMap">
+        select* from message
+    </select>
+    <insert id="insertOne">
+		insert into message
+		values (#{MsgId},
+		        #{CreateTime},
+		        #{FromUserName},
+		        #{ToUserName},
+		        #{MsgType},
+		        #{Content},
+		        #{PicUrl},
+		        #{MediaId},
+		        #{Format},
+		        #{Recognition},
+		        #{ThumbMediaId},
+		        #{LocationX},
+		        #{LocationY},
+		        #{Scale},
+		        #{Label},
+		        #{Title},
+		        #{Description},
+		        #{Url},
+		        #{KeyMessage}
+)
+	</insert>
+</mapper>
