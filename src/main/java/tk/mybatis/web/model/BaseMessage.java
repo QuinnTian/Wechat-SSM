@@ -1,5 +1,6 @@
 package tk.mybatis.web.model;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,24 +9,20 @@ import java.util.Date;
 public class BaseMessage {
     @Getter
     @Setter
-    public String ToUserName;
+    @XStreamAlias("ToUserName")
+    public String toUserName;
     @Getter
     @Setter
-    public String FromUserName;
+    @XStreamAlias("FromUserName")
+    public String fromUserName;
     @Getter
     @Setter
-    public Long CreateTime;
+    @XStreamAlias("CreateTime")
+    public Long createTime;
     @Getter
     @Setter
-    public String MsgType;
+    @XStreamAlias("MsgType")
+    public String msgType;
 
-    @Override
-    public String toString() {
-        return "BaseMessage{" +
-                "ToUserName='" + ToUserName + '\'' +
-                ", FromUserName='" + FromUserName + '\'' +
-                ", CreateTime=" + CreateTime +
-                ", MsgType='" + MsgType + '\'' +
-                '}';
-    }
+
 }

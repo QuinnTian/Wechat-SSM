@@ -23,31 +23,31 @@ public class FileUploadController {
     @Autowired
     private UploadService customerService;
 
-    @RequestMapping(value = "batchimport", method = RequestMethod.POST)
-    public String batchimport(@RequestParam(value="filename") MultipartFile file,
-                              HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        
-        log.info("AddController ..batchimport() start");
-        //判断文件是否为空
-        if(file==null) return null;
-        //获取文件名
-        String name=file.getOriginalFilename();
-        //进一步判断文件是否为空（即判断其大小是否为0或其名称是否为null）
-        long size=file.getSize();
-        if(name==null || ("").equals(name) && size==0) return null;
-
-        //批量导入。参数：文件名，文件。
-        boolean b = customerService.batchImport(name,file);
-        if(b){
-            String Msg ="导入成功";
-            request.getSession().setAttribute("msg",Msg);
-        }else{
-            String Msg ="import failed！";
-            request.getSession().setAttribute("msg",Msg);
-        }
-        log.info(request.getSession().getAttribute("msg"));
-        return "addfile";
-    }
+//    @RequestMapping(value = "batchimport", method = RequestMethod.POST)
+//    public String batchimport(@RequestParam(value="filename") MultipartFile file,
+//                              HttpServletRequest request, HttpServletResponse response) throws IOException {
+//        response.setContentType("text/html;charset=UTF-8");
+//
+//        log.info("AddController ..batchimport() start");
+//        //判断文件是否为空
+//        if(file==null) return null;
+//        //获取文件名
+//        String name=file.getOriginalFilename();
+//        //进一步判断文件是否为空（即判断其大小是否为0或其名称是否为null）
+//        long size=file.getSize();
+//        if(name==null || ("").equals(name) && size==0) return null;
+//
+//        //批量导入。参数：文件名，文件。
+//        boolean b = customerService.batchImport(name,file);
+//        if(b){
+//            String Msg ="导入成功";
+//            request.getSession().setAttribute("msg",Msg);
+//        }else{
+//            String Msg ="import failed！";
+//            request.getSession().setAttribute("msg",Msg);
+//        }
+//        log.info(request.getSession().getAttribute("msg"));
+//        return "addfile";
+//    }
 
 }

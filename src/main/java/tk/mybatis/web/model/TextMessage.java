@@ -1,27 +1,20 @@
 package tk.mybatis.web.model;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
 import lombok.Getter;
 import lombok.Setter;
-
+@XStreamAlias("TextMessage")
 public class TextMessage extends BaseMessage {
 
     @Getter
     @Setter
-    private Long MsgId;
+    @XStreamAlias("MsgId")
+    private Long msgId;
     @Getter
     @Setter
-    private String Content;
+    @XStreamAlias("Content")
+    private String content;
 
 
-    @Override
-    public String toString() {
-        return "TextMessage{" +
-                "MsgId=" + MsgId +
-                ", Content='" + Content + '\'' +
-                ", ToUserName='" + ToUserName + '\'' +
-                ", FromUserName='" + FromUserName + '\'' +
-                ", CreateTime=" + CreateTime +
-                ", MsgType='" + MsgType + '\'' +
-                '}';
-    }
+
 }

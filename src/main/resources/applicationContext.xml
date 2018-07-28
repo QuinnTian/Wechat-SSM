@@ -17,7 +17,7 @@
 
     <bean id="dataSource" class="org.apache.ibatis.datasource.pooled.PooledDataSource">
         <property name="driver" value="com.mysql.jdbc.Driver"/>
-        <property name="url" value="jdbc:mysql:///springmvc?allowMultiQueries=true"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/wechat?allowMultiQueries=true"/>
         <property name="username" value="root"/>
         <property name="password" value=""/>
     </bean>

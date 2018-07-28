@@ -1,5 +1,6 @@
 package tk.mybatis.web.util;
 
+import com.sun.xml.internal.ws.util.xml.XmlUtil;
 import com.thoughtworks.xstream.XStream;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
@@ -54,7 +55,8 @@ public class MessageUtil {
     }
     public static String textMessageToXml(TextMessage textMessage) {
         XStream xStream = new XStream();
-        xStream.alias("xml", textMessage.getClass());
+        //xStream.alias("xml", textMessage.getClass());
+        xStream.processAnnotations(textMessage.getClass());
         return xStream.toXML(textMessage);
     }
     public static String initText(String toUserName,String fromUserName,
@@ -114,33 +116,33 @@ public class MessageUtil {
         return xstream.toXML(musicMessage);
     }
 
-    public static Message mapToMessage(Map<String,String> m)  {
-
-        Message ms = new Message();
-        if(m.get("MsgId")==null){
-            ms.setMsgId(Long.valueOf(m.get("CreateTime")));
-        }else {
-            ms.setMsgId(Long.valueOf(m.get("MsgId")));
-        }
-        ms.setCreateTime(Long.valueOf(m.get("CreateTime")));
-        ms.setFromUserName(m.get("FromUserName"));
-        ms.setToUserName(m.get("ToUserName"));
-        ms.setMsgType(m.get("MsgType"));
-        ms.setContent(m.get("Content"));
-        ms.setPicUrl(m.get("PicUrl"));
-        ms.setMediaId(m.get("MediaId"));
-        ms.setFormat(m.get("Format"));
-        ms.setRecognition(m.get("Recognition"));
-        ms.setThumbMediaId(m.get("ThumbMediaId"));
-        ms.setLocationX(m.get("Location_X"));
-        ms.setLocationY(m.get("Location_Y"));
-        ms.setScale(m.get("Scale"));
-        ms.setLabel( m.get("Label"));
-        ms.setTitle(m.get("Title"));
-        ms.setDescription(m.get("Description"));
-        ms.setUrl(m.get("Url"));
-        ms.setKeyMessage(m.get("KeyMessage"));
-        System.out.println(ms.toString());
+//    public static Message mapToMessage(Map<String,String> m)  {
+//
+//        Message ms = new Message();
+//        if(m.get("MsgId")==null){
+//            ms.setMsgId(Long.valueOf(m.get("CreateTime")));
+//        }else {
+//            ms.setMsgId(Long.valueOf(m.get("MsgId")));
+//        }
+//        ms.setCreateTime(Long.valueOf(m.get("CreateTime")));
+//        ms.setFromUserName(m.get("FromUserName"));
+//        ms.setToUserName(m.get("ToUserName"));
+//        ms.setMsgType(m.get("MsgType"));
+//        ms.setContent(m.get("Content"));
+//        ms.setPicUrl(m.get("PicUrl"));
+//        ms.setMediaId(m.get("MediaId"));
+//        ms.setFormat(m.get("Format"));
+//        ms.setRecognition(m.get("Recognition"));
+//        ms.setThumbMediaId(m.get("ThumbMediaId"));
+//        ms.setLocationX(m.get("Location_X"));
+//        ms.setLocationY(m.get("Location_Y"));
+//        ms.setScale(m.get("Scale"));
+//        ms.setLabel( m.get("Label"));
+//        ms.setTitle(m.get("Title"));
+//        ms.setDescription(m.get("Description"));
+//        ms.setUrl(m.get("Url"));
+//        ms.setKeyMessage(m.get("KeyMessage"));
+//        System.out.println(ms.toString());
 
 
 //
@@ -157,6 +159,6 @@ public class MessageUtil {
 //			}
 //		}
 
-        return ms;
-    }
+ //       return ms;
+  //  }
 }

@@ -1,7 +1,5 @@
 package tk.mybatis.web.mapper;
 
-import tk.mybatis.web.model.Message;
-
 import java.util.List;
 
 public interface MessageReplyMapper {
@@ -10,7 +8,7 @@ public interface MessageReplyMapper {
      * @param ms
      * @return
      */
-    public int insertMessageReply(List<Message> ms);
-
-    public List<Message> queryAllMessageReply();
+//    public int insertMessageReply(List<Message> ms);
+//
+//    public List<Message> queryAllMessageReply();
 }

@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import tk.mybatis.web.model.Message;
 import tk.mybatis.web.service.impl.MessageService;
 import tk.mybatis.web.util.CheckUtil;
 import tk.mybatis.web.util.MessageUtil;
@@ -79,12 +78,12 @@ public class WechatController {
          * 所有接收到的信息收到的信息进行数据库存储
          * 表：message
          */
-        MessageService.saveOne(map);
-        Message m=MessageUtil.mapToMessage(map);
+ //       MessageService.saveOne(map);
+ //       Message m=MessageUtil.mapToMessage(map);
 //        List<Message> ms = new ArrayList<Message>();
 //        ms.add(m);
 //        MessageService.saveMore(ms);
-        out.print(MessageService.messageJudge(map));
+//        out.print(MessageService.messageJudge(map));
 
 
     }
