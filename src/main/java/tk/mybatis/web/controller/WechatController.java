@@ -74,6 +74,7 @@ public class WechatController {
         String content = map.get("Content");//文本消息内容
         System.out.println(content);
         String msgId = map.get("MsgId");//消息id，64位整型
+        MessageService.judgeTyep(map);
         /**
          * 所有接收到的信息收到的信息进行数据库存储
          * 表：message

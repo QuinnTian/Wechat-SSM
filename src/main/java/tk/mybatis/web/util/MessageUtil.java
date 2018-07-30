@@ -19,6 +19,9 @@ import java.io.InputStream;
 import java.util.*;
 
 public class MessageUtil {
+    /**
+     * 消息类型静态变量
+     */
     public static final String MESSAGE_TEXT = "text";
     public static final String MESSAGE_IMAGE = "image";
     public static final String MESSAGE_VOICE = "voice";
@@ -32,6 +35,26 @@ public class MessageUtil {
     public static final String MESSAGE_VIEW = "VIEW";
     private static final String MESSAGE_NEWS = "news";
     public static final String MESSAGE_MUSIC = "music";
+
+   //map转BaseMessage工具类
+    public static BaseMessage mapToBaseMessage(Map<String,String> map){
+        BaseMessage bs = new BaseMessage();
+        bs.setToUserName(map.get("ToUserName"));
+        bs.setFromUserName(map.get("FromUserName"));
+        bs.setMsgType(map.get("MsgType"));
+        bs.setMsgType(map.get("CreateTime"));
+       return bs;
+
+
+    }
+    public static TextMessage mapToTextMessage(Map<String,String> map){
+        TextMessage tx = new TextMessage();
+        tx.setContent(map.get("Content"));
+        tx.setMsgId(Long.valueOf(map.get("MsgId")));
+        return tx;
+
+
+    }
     /**
      * 接收xml消息转到Map集合
      */
@@ -53,11 +76,29 @@ public class MessageUtil {
         ins.close();// 释放输入流
         return map;
     }
+
+    /**
+     * 工具类 文本信息转换为XML
+     * @param textMessage
+     * @return
+     */
     public static String textMessageToXml(TextMessage textMessage) {
         XStream xStream = new XStream();
         //xStream.alias("xml", textMessage.getClass());
         xStream.processAnnotations(textMessage.getClass());
         return xStream.toXML(textMessage);
+    }
+
+    /**
+     * 工具类 基础信息转换为XML
+     * @param baseMessage
+     * @return
+     */
+    public static String baseMessageToXml(BaseMessage baseMessage) {
+        XStream xStream = new XStream();
+        //xStream.alias("xml", textMessage.getClass());
+        xStream.processAnnotations(baseMessage.getClass());
+        return xStream.toXML(baseMessage);
     }
     public static String initText(String toUserName,String fromUserName,
                                   String content ){

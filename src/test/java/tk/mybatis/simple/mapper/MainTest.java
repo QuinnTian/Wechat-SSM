@@ -1,6 +1,7 @@
 package tk.mybatis.simple.mapper;
 
 import org.junit.Test;
+import tk.mybatis.web.model.BaseMessage;
 import tk.mybatis.web.model.TextMessage;
 import tk.mybatis.web.util.MessageUtil;
 
@@ -15,5 +16,17 @@ public class MainTest {
         textMessage.setMsgId((long) 999999999);
         String xml=MessageUtil.textMessageToXml(textMessage);
         System.out.println(xml);
+
+
+    }
+    @Test
+    public void testToXml2(){
+        BaseMessage textMessage = new BaseMessage();
+        textMessage.setMsgType("测试内容");
+        textMessage.setId((long) 1111);
+        String xml=MessageUtil.baseMessageToXml(textMessage);
+        System.out.println(xml);
+
+
     }
 }

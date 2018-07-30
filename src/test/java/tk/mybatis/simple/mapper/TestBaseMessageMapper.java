@@ -32,7 +32,7 @@ public class TestBaseMessageMapper extends BaseMapperTest {
             BaseMessage baseMessage = new BaseMessage();
             baseMessage.setMsgType("1");
             int i = baseMessageMapper.insert(baseMessage);
-
+            System.out.println(baseMessage.getId());
         }finally {
             sqlSession.commit();
             sqlSession.close();
