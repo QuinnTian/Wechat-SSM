@@ -1,6 +1,5 @@
 package tk.mybatis.web.service.impl;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
 import tk.mybatis.web.mapper.BaseMessageMapper;
 import tk.mybatis.web.mapper.TextMessageMapper;
 import tk.mybatis.web.model.BaseMessage;
@@ -8,11 +7,8 @@ import tk.mybatis.web.model.TextMessage;
 import tk.mybatis.web.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import tk.mybatis.web.mapper.MessageMapper;
-import tk.mybatis.web.mapper.MessageReplyMapper;
 
 
-import java.util.List;
 import java.util.Map;
 
 @Service
@@ -41,7 +37,7 @@ public class MessageService {
             BaseMessage bs = MessageUtil.mapToBaseMessage(map);
             baseMessageMapper.insert(bs);
             TextMessage tx = MessageUtil.mapToTextMessage(map);
-            tx.setId(bs.getId());
+            tx.setBId(bs.getId());
             textMessageMapper.insert(tx);
 
         }

@@ -42,7 +42,7 @@ public class MessageUtil {
         bs.setToUserName(map.get("ToUserName"));
         bs.setFromUserName(map.get("FromUserName"));
         bs.setMsgType(map.get("MsgType"));
-        bs.setMsgType(map.get("CreateTime"));
+        bs.setCreateTime(Long.valueOf(map.get("CreateTime")));
        return bs;
 
 
@@ -51,6 +51,7 @@ public class MessageUtil {
         TextMessage tx = new TextMessage();
         tx.setContent(map.get("Content"));
         tx.setMsgId(Long.valueOf(map.get("MsgId")));
+
         return tx;
 
 
