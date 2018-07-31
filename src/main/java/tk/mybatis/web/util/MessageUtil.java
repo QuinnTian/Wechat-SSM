@@ -36,8 +36,15 @@ public class MessageUtil {
     private static final String MESSAGE_NEWS = "news";
     public static final String MESSAGE_MUSIC = "music";
 
-   //map转BaseMessage工具类
+    /**
+     * <p>Create by Quinn Tian
+     * <p>Last modified date 2018/7/31 11:00
+     * @param map
+     * @return tk.mybatis.web.model.BaseMessage
+     * @since 2018/7/31 11:00
+     */
     public static BaseMessage mapToBaseMessage(Map<String,String> map){
+
         BaseMessage bs = new BaseMessage();
         bs.setToUserName(map.get("ToUserName"));
         bs.setFromUserName(map.get("FromUserName"));
@@ -47,7 +54,15 @@ public class MessageUtil {
 
 
     }
+    /**
+     * <p>Create by Quinn Tian
+     * <p>Last modified date 2018/7/31 11:01
+     * @param map
+     * @return tk.mybatis.web.model.TextMessage
+     * @since 2018/7/31 11:01
+     */
     public static TextMessage mapToTextMessage(Map<String,String> map){
+
         TextMessage tx = new TextMessage();
         tx.setContent(map.get("Content"));
         tx.setMsgId(Long.valueOf(map.get("MsgId")));
@@ -57,9 +72,14 @@ public class MessageUtil {
 
     }
     /**
-     * 接收xml消息转到Map集合
+     * <p>Create by Quinn Tian
+     * <p>Last modified date 2018/7/31 11:02
+     * @param request
+     * @return java.util.Map<java.lang.String,java.lang.String>
+     * @since 2018/7/31 11:02
      */
     public static Map<String, String> xmlToMap(HttpServletRequest request) throws IOException, DocumentException {
+
         Map<String, String> map = new HashMap<String, String>();
 
         SAXReader reader = new SAXReader();

@@ -18,22 +18,28 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
-
+/**
+ * @classname: WechatController
+ * @description: 与微信服务端进行对接
+ * @author: Quinn Tian
+ * @create:  2018/7/31
+**/
 @Controller
 public class WechatController {
     @Autowired
     private MessageService MessageService;
 
     /**
-     * 微信公众号与服务端进行对接
-     * @param req
-     * @param resp
-     * @throws ServletException
-     * @throws IOException
-     */
+     * @Description: 通过get与微信服务端接口进行对接
+     * @Param: [req, resp]
+     * @return: void
+     * @Author: Mr.Wang
+     * @Date: 2018/7/31 1:00
+     **/
     @RequestMapping(value = "/wx.do",method = RequestMethod.GET)
     @ResponseBody
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
         // TODO Auto-generated method stub
         //super.doGet(req, resp);
         String signature = req.getParameter("signature");
@@ -53,9 +59,17 @@ public class WechatController {
             System.out.println("验证失败");
         }
     }
+    /**
+     * @Description: post执行具体逻辑
+     * @Param: [req, resp]
+     * @return: void
+     * @Author: Quinn Tian
+     * @Date: 2018/7/31 1:02
+     **/
     @RequestMapping(value = "/wx.do",method = RequestMethod.POST)
     @ResponseBody
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, DocumentException {
+
         // TODO Auto-generated method stub
         //super.doGet(req, resp);
         resp.setContentType("text/html;charset=UTF-8");
@@ -74,7 +88,7 @@ public class WechatController {
         String content = map.get("Content");//文本消息内容
         System.out.println(content);
         String msgId = map.get("MsgId");//消息id，64位整型
-        MessageService.judgeTyep(map);
+        MessageService.judgeType(map);
         /**
          * 所有接收到的信息收到的信息进行数据库存储
          * 表：message

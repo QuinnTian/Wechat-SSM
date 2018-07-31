@@ -10,7 +10,12 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.Map;
-
+/**
+ * <p>The class of MessageService
+ * @since 2018/7/31
+ * @author Quinn Tian
+ * @version 0.0.1
+*/
 @Service
 public class MessageService {
 
@@ -30,8 +35,18 @@ public class MessageService {
     @Autowired
     private BaseMessageMapper baseMessageMapper;
     @Autowired
+
     private TextMessageMapper textMessageMapper;
-    public  String judgeTyep(Map<String,String> map){
+
+    /**
+     * The function is to judge the type of messages from wechat service.
+     * <p>Create by Quinn Tian
+     * <p>Last modified date  2018/7/31 10.50
+     * @param map
+     * @return java.lang.String
+     * @since 2018/7/31 10:40
+     */
+    public  String judgeType(Map<String,String> map){
 
         if(map.get("MsgType").equals(MESSAGE_TEXT)){
             BaseMessage bs = MessageUtil.mapToBaseMessage(map);

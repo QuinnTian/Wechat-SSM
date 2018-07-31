@@ -11,8 +11,11 @@ import tk.mybatis.web.service.DictService;
 import java.util.List;
 
 /**
- * @author liuzh
- */
+* @program: $PROJECT_NAME
+* @description: $description
+* @author: Quinn Tian
+* @create: ${YEAR}-${MONTH}-${DAY} ${HOUR}:${MINUTE}
+**/
 @Service
 public class DictServiceImpl implements DictService {
 
@@ -34,6 +37,13 @@ public class DictServiceImpl implements DictService {
 
     @Override
     public boolean saveOrUpdate(SysDict sysDict) {
+        /** 
+         * @Description: 方法描述 
+         * @Param:  * @param sysDict 
+         * @return: boolean 
+         * @Author: Mr.Wang 
+         * @Date: 2018/7/31 0:01
+        **/ 
         if(sysDict.getId() == null){
             return dictMapper.insert(sysDict) == 1;
         } else {
