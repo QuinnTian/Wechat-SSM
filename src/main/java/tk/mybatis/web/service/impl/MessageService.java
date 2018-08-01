@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
+import java.util.List;
 import java.util.Map;
 /**
  * <p>The class of MessageService
@@ -55,9 +56,21 @@ public class MessageService {
             tx.setBId(bs.getId());
             textMessageMapper.insert(tx);
 
+
         }
         return null;
     }
+    public void replyMessage(Map<String,String> map){
+        if(map.get("MsgType").equals(MESSAGE_TEXT)){
+        List<TextMessage> txs = textMessageMapper.selectAll();
+        for (TextMessage t : txs){
+            if (map.get("content").equals(t.getContent())){
+
+            }
+        }
+        }
+    }
+
 //    @Autowired
 //    private  UploadService uploadService;
 //    @Autowired
