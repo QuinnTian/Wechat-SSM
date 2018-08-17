@@ -19,6 +19,7 @@ public interface TextMessageMapper {
      */
     List<TextMessage> selectAll();
     /**
+     *
      * <p>Create by Quinn Tian
      * <p>Last modified date 2018/7/31 10:59
      * @param tx,TextMessage
@@ -26,4 +27,14 @@ public interface TextMessageMapper {
      * @since 2018/7/31 10:59
      */
     int insert(TextMessage tx);
+
+    /**
+     * the funciton is query the param that name is type is '1' or '0' of basemessages
+     * <p>Create by Quinn Tian
+     * <p>Last modified date
+     * @param
+     * @return
+     * @since 2018/8/17 17:36
+    */
+    List<TextMessage> selectAllByType(Long type);
 }

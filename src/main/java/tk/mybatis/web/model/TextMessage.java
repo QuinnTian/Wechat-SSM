@@ -4,7 +4,7 @@ import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
 import lombok.Getter;
 import lombok.Setter;
-@XStreamAlias("TextMessage")
+@XStreamAlias("xml")
 public class TextMessage extends BaseMessage {
     @Getter
     @Setter

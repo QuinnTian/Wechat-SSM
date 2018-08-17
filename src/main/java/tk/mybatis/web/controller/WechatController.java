@@ -89,6 +89,15 @@ public class WechatController {
         System.out.println(content);
         String msgId = map.get("MsgId");//消息id，64位整型
         MessageService.judgeType(map);
+        String message ="<xml>" +
+                "<ToUserName>gh_e9441cd1ed46</ToUserName>" +
+                "<FromUserName>o3Ylrw-no3YaXIsnGwFKG9HZT6Ac</FromUserName>" +
+                "<CreateTime>1534502362852</CreateTime>" +
+                "<MsgType>text</MsgType>" +
+                "<Content>测试回复数据</Content>" +
+                "</xml>";
+        System.out.println(message);
+        out.println(message);
         /**
          * 所有接收到的信息收到的信息进行数据库存储
          * 表：message

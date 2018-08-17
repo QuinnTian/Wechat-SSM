@@ -23,5 +23,19 @@ public class TestTextMessageMapper extends BaseMapperTest {
 
 
     }
+    @Test
+    public void selectallByType(){
+        SqlSession sqlSession = getSqlSession();
+        try {
+
+            TextMessageMapper textMessageMapper = sqlSession.getMapper(TextMessageMapper.class);
+            List<TextMessage> textMessages = textMessageMapper.selectAllByType((long) 1);
+            System.out.println(textMessages);
+        }finally {
+            getSqlSession().close();
+        }
+
+
+    }
 
 }

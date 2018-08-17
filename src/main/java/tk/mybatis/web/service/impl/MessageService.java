@@ -33,6 +33,8 @@ public class MessageService {
     public static final String MESSAGE_VIEW = "VIEW";
     private static final String MESSAGE_NEWS = "news";
     public static final String MESSAGE_MUSIC = "music";
+    public static final Long MESSAGE_REPLY = Long.valueOf(1);
+    public static final Long MESSAGE_SAVE = Long.valueOf(0);
     @Autowired
     private BaseMessageMapper baseMessageMapper;
     @Autowired
@@ -42,7 +44,7 @@ public class MessageService {
     /**
      * The function is to judge the type of messages from wechat service.
      * <p>Create by Quinn Tian
-     * <p>Last modified date  2018/7/31 10.50
+     * <p>Last modified date  2018/8/17 17.00
      * @param map
      * @return java.lang.String
      * @since 2018/7/31 10:40
@@ -51,24 +53,30 @@ public class MessageService {
 
         if(map.get("MsgType").equals(MESSAGE_TEXT)){
             BaseMessage bs = MessageUtil.mapToBaseMessage(map);
+            //插入基础数据
             baseMessageMapper.insert(bs);
             TextMessage tx = MessageUtil.mapToTextMessage(map);
             tx.setBId(bs.getId());
+            //插入文本信息表
             textMessageMapper.insert(tx);
 
 
         }
         return null;
     }
-    public void replyMessage(Map<String,String> map){
+    public String replyMessage(Map<String,String> map){
+        String message=null;
         if(map.get("MsgType").equals(MESSAGE_TEXT)){
-        List<TextMessage> txs = textMessageMapper.selectAll();
+        List<TextMessage> txs = textMessageMapper.selectAllByType(MESSAGE_REPLY);
         for (TextMessage t : txs){
-            if (map.get("content").equals(t.getContent())){
-
+            if (map.get("Content").equals(t.getContent())){
+                message=MessageUtil.initText(map.get("FromUserName"),map.get("ToUserName"),t.getContent());
+                break;
             }
         }
         }
+        System.out.println(message);
+        return message;
     }
 
 //    @Autowired

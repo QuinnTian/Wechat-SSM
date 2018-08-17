@@ -13,4 +13,7 @@
           #{type}
         );
     </insert>
+    <select id="selectAllByType" resultType="tk.mybatis.web.model.TextMessage">
+        SELECT * FROM text_message a LEFT JOIN base_message b on a.b_id=b.id WHERE a.type = #{type};
+    </select>
 </mapper>
