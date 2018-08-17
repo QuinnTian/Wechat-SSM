@@ -31,6 +31,7 @@ public class TestBaseMessageMapper extends BaseMapperTest {
             BaseMessageMapper baseMessageMapper = sqlSession.getMapper(BaseMessageMapper.class);
             BaseMessage baseMessage = new BaseMessage();
             baseMessage.setMsgType("1");
+
             int i = baseMessageMapper.insert(baseMessage);
             System.out.println(baseMessage.getId());
         }finally {

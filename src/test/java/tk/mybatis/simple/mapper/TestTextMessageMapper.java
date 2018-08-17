@@ -38,4 +38,23 @@ public class TestTextMessageMapper extends BaseMapperTest {
 
     }
 
+    @Test
+    public void insert(){
+        SqlSession sqlSession = getSqlSession();
+        try {
+
+            TextMessageMapper textMessageMapper = sqlSession.getMapper(TextMessageMapper.class);
+            TextMessage tx = new TextMessage();
+            tx.setType(1);
+            tx.setContent("test one");
+            textMessageMapper.insert(tx);
+            //System.out.println(textMessages);
+        }finally {
+            sqlSession.commit();
+            sqlSession.close();
+        }
+
+
+    }
+
 }
