@@ -70,7 +70,7 @@ public class MessageService {
         List<TextMessage> txs = textMessageMapper.selectAllByType(MESSAGE_REPLY);
         for (TextMessage t : txs){
             if (map.get("Content").equals(t.getContent())){
-                message=MessageUtil.initText(map.get("FromUserName"),map.get("ToUserName"),t.getContent());
+                message=MessageUtil.initText(map.get("ToUserName"),map.get("FromUserName"),t.getContent());
                 break;
             }
         }
