@@ -10,10 +10,10 @@ public class TextMessage extends BaseMessage {
     @Setter
     @XStreamOmitField
     private Long bId;
-    @Getter
-    @Setter
-    @XStreamAlias("MsgId")
-    private Long msgId;
+//    @Getter
+//    @Setter
+//    @XStreamAlias("MsgId")
+//    private Long msgId;
     @Getter
     @Setter
     @XStreamAlias("Content")

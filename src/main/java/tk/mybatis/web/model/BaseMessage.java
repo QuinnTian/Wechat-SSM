@@ -31,6 +31,9 @@ public class BaseMessage {
     @Setter
     @XStreamAlias("MsgType")
     public String msgType;
-
+    @Getter
+    @Setter
+    @XStreamAlias("MsgId")
+    public Long msgId;
 
 }
