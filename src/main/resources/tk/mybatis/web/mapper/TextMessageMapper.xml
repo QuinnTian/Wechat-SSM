@@ -6,11 +6,12 @@
         SELECT * FROM text_message a INNER JOIN base_message b on a.b_id=b.id;
     </select>
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" >
-        insert text_message(b_id,content,msg_id,type) value (
+        insert text_message(b_id,content,msg_id,type,keyword) value (
           #{bId},
           #{content},
           #{msgId},
-          #{type}
+          #{type},
+          #{keyword}
         );
     </insert>
     <select id="selectAllByType" resultType="tk.mybatis.web.model.TextMessage">

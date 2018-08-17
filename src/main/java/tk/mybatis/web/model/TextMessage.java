@@ -22,7 +22,10 @@ public class TextMessage extends BaseMessage {
     @Setter
     @XStreamOmitField
     private int type;
-
+    @Getter
+    @Setter
+    @XStreamOmitField
+    private String keyword;
 
 
 }

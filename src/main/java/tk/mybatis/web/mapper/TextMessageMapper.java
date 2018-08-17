@@ -1,6 +1,7 @@
 package tk.mybatis.web.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import sun.plugin2.message.Message;
 import tk.mybatis.web.model.TextMessage;
 
 import java.util.List;
@@ -37,4 +38,5 @@ public interface TextMessageMapper {
      * @since 2018/8/17 17:36
     */
     List<TextMessage> selectAllByType(Long type);
+
 }
