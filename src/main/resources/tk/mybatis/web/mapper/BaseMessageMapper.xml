@@ -6,6 +6,6 @@
         SELECT * FROM base_message;
     </select>
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" >
-        insert base_message(to_user_name,from_user_name,create_time,msg_type) value (#{toUserName},#{fromUserName},#{createTime},#{msgType})
+        insert base_message(to_user_name,from_user_name,create_time,msg_type,msg_id) value (#{toUserName},#{fromUserName},#{createTime},#{msgType},#{msgId})
     </insert>
 </mapper>

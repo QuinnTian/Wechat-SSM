@@ -2,6 +2,7 @@ package tk.mybatis.web.util;
 
 import com.sun.xml.internal.ws.util.xml.XmlUtil;
 import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.annotations.Annotations;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -50,6 +51,7 @@ public class MessageUtil {
         bs.setFromUserName(map.get("FromUserName"));
         bs.setMsgType(map.get("MsgType"));
         bs.setCreateTime(Long.valueOf(map.get("CreateTime")));
+        bs.setMsgId(Long.valueOf(map.get("MsgId")));
        return bs;
 
 
@@ -66,6 +68,76 @@ public class MessageUtil {
         TextMessage tx = new TextMessage();
         tx.setContent(map.get("Content"));
         tx.setMsgId(Long.valueOf(map.get("MsgId")));
+
+        return tx;
+
+
+    }
+    /**
+     * SubMap to SubObject
+     * <p>Create by Quinn Tian
+     * <p>Last modified date
+     * @param map
+     * @return tk.mybatis.web.model.SubEvent
+     * @since 2018/8/18 10:12
+    */
+    public static SubEvent mapToSubEvent(Map<String,String> map){
+
+        SubEvent subEvent = new SubEvent();
+        subEvent.setEvent(map.get("Event"));
+        subEvent.setEventKey(map.get("EventKey"));
+        subEvent.setTicket("Ticket");
+        return subEvent;
+
+
+    }
+    /**mapToLocEvent
+     * <p>Create by Quinn Tian
+     * <p>Last modified date
+     * @param map
+     * @return tk.mybatis.web.model.LocEvent
+     * @since 2018/8/18 10:18
+    */
+    public static LocEvent mapToLocEvent(Map<String,String> map){
+
+       LocEvent locEvent = new LocEvent();
+       locEvent.setEvent(map.get("Event"));
+       locEvent.setLatitude(map.get("Latitude"));
+       locEvent.setLongitude(map.get("Longitude"));
+       locEvent.setPrecision(map.get("Precision"));
+       return locEvent;
+
+
+    }/**
+     * mapToMenuEvent
+     * <p>Create by Quinn Tian
+     * <p>Last modified date
+     * @param map
+     * @return tk.mybatis.web.model.LocEvent
+     * @since 2018/8/18 10:19
+    */
+    public static MenuEvent mapToMenuEvent(Map<String,String> map){
+
+        MenuEvent menuEvent = new MenuEvent();
+        menuEvent.setEvent(map.get("Event"));
+        menuEvent.setEventKey(map.get("EventKey"));
+
+        return menuEvent;
+
+
+    }
+
+    /**
+     * <p>Create by Quinn Tian
+     * <p>Last modified date 2018/8/18 0:28
+     * @param
+     * @return
+     * @since 2018/8/18 0:28
+    */
+    public static ImageMessage mapToImageMessage(Map<String,String> map){
+
+        ImageMessage tx = new ImageMessage();
+
 
         return tx;
 
@@ -109,7 +181,20 @@ public class MessageUtil {
         xStream.processAnnotations(textMessage.getClass());
         return xStream.toXML(textMessage);
     }
+    /***
+     * <p>Create by Quinn Tian
+     * <p>Last modified date
+     * @param imageMessage
+     * @return java.lang.String
+     * @since 2018/8/18 0:30
+    */
+    public static String imageMessageToXml(ImageMessage imageMessage) {
+        XStream xStream = new XStream();
 
+        //xStream.alias("xml", textMessage.getClass());
+        xStream.processAnnotations(imageMessage.getClass());
+        return xStream.toXML(imageMessage);
+    }
     /**
      * 工具类 基础信息转换为XML
      * @param baseMessage
@@ -154,11 +239,7 @@ public class MessageUtil {
     }
 
 
-    public static String imageMessageToXml(ImageMessage imageMessage){
-        XStream xstream = new XStream();
-        xstream.alias("xml", imageMessage.getClass());
-        return xstream.toXML(imageMessage);
-    }
+
     public static String initImageMessage(String toUserName,String fromUserName){
         String message = null;
         Image image = new Image();
@@ -168,7 +249,7 @@ public class MessageUtil {
         imageMessage.setToUserName(fromUserName);
         imageMessage.setMsgType(MESSAGE_IMAGE);
         imageMessage.setCreateTime(new Date().getTime());
-        imageMessage.setImage(image);
+        //imageMessage.setImage(image);
         message = imageMessageToXml(imageMessage);
         return message;
     }

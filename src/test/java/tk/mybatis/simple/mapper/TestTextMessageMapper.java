@@ -3,8 +3,12 @@ package tk.mybatis.simple.mapper;
 import org.apache.ibatis.session.SqlSession;
 import org.junit.Test;
 import org.mybatis.spring.SqlSessionFactoryBean;
+import sun.plugin2.message.Message;
 import tk.mybatis.web.mapper.TextMessageMapper;
+import tk.mybatis.web.model.Image;
+import tk.mybatis.web.model.ImageMessage;
 import tk.mybatis.web.model.TextMessage;
+import tk.mybatis.web.util.MessageUtil;
 
 import java.util.List;
 
@@ -56,5 +60,12 @@ public class TestTextMessageMapper extends BaseMapperTest {
 
 
     }
+    @Test
+   public void testImageToXml(){
+       ImageMessage imageMessage =new ImageMessage();
+       //imageMessage.setIId();
+       //imageMessage.
 
+       //System.out.println(MessageUtil.imageMessageToXml(imageMessage));
+   }
 }

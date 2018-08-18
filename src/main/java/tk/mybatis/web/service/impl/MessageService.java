@@ -1,9 +1,9 @@
 package tk.mybatis.web.service.impl;
 
 import tk.mybatis.web.mapper.BaseMessageMapper;
+import tk.mybatis.web.mapper.EventMapper;
 import tk.mybatis.web.mapper.TextMessageMapper;
-import tk.mybatis.web.model.BaseMessage;
-import tk.mybatis.web.model.TextMessage;
+import tk.mybatis.web.model.*;
 import tk.mybatis.web.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,20 +38,22 @@ public class MessageService {
     @Autowired
     private BaseMessageMapper baseMessageMapper;
     @Autowired
-
     private TextMessageMapper textMessageMapper;
+    @Autowired
+    private EventMapper eventMapper;
 
     /**
      * The function is to judge the type of messages from wechat service.
      * <p>Create by Quinn Tian
-     * <p>Last modified date  2018/8/17 17.00
+     * <p>Last modified date  2018/8/18 17.00
      * @param map
      * @return java.lang.String
      * @since 2018/7/31 10:40
      */
     public  String judgeType(Map<String,String> map){
-
-        if(map.get("MsgType").equals(MESSAGE_TEXT)){
+        String event=map.get("Event");
+        String msgType=map.get("MsgType");
+        if(msgType.equals(MESSAGE_TEXT)){
             BaseMessage bs = MessageUtil.mapToBaseMessage(map);
             //插入基础数据
             baseMessageMapper.insert(bs);
@@ -61,6 +63,31 @@ public class MessageService {
             textMessageMapper.insert(tx);
 
 
+        }else if(msgType.equals(MESSAGE_EVENT)){
+            if(MESSAGE_SUBSCRIBE.equals(event)||MESSAGE_UNSUBSCRIBE.equals(event)){
+                //插入
+                BaseMessage bs = MessageUtil.mapToBaseMessage(map);
+                baseMessageMapper.insert(bs);
+                SubEvent subEvent = MessageUtil.mapToSubEvent(map);
+                subEvent.setEId(bs.getId());
+                eventMapper.insertSub(subEvent);
+
+            }else if(MESSAGE_LOCATION.equals(event)){
+                //插入
+                BaseMessage bs = MessageUtil.mapToBaseMessage(map);
+                baseMessageMapper.insert(bs);
+                LocEvent locEvent = MessageUtil.mapToLocEvent(map);
+                locEvent.setLId(bs.getId());
+                eventMapper.insertLoc(locEvent);
+
+            }else if(MESSAGE_CLICK.equals(event)||MESSAGE_VIEW.equals(event)){
+                //插入
+                BaseMessage bs = MessageUtil.mapToBaseMessage(map);
+                baseMessageMapper.insert(bs);
+                MenuEvent menuEvent = MessageUtil.mapToMenuEvent(map);
+                menuEvent.setMId(bs.getId());
+                eventMapper.insertMenuClick(menuEvent);
+            }
         }
         return null;
     }

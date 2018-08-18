@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="tk.mybatis.web.mapper.EventMapper">
+
+    <insert id="insertSub" useGeneratedKeys="true" keyProperty="id" >
+        insert subscribe_event(e_id,event,event_key,ticket) value (
+          #{eId},
+          #{event},
+          #{eventKey},
+          #{ticket}
+        );
+    </insert>
+    <insert id="insertLoc" useGeneratedKeys="true" keyProperty="id" >
+        insert location_event(l_id,event,latitude,longitude,precisions) value (
+          #{lId},
+          #{event},
+          #{latitude},
+          #{longitude},
+          #{precision}
+        );
+    </insert>
+    <insert id="insertMenuClick" useGeneratedKeys="true" keyProperty="id" >
+        insert menu_event(m_id,event,event_key) value (
+          #{mId},
+          #{event},
+          #{eventKey}
+        );
+    </insert>
+</mapper>
