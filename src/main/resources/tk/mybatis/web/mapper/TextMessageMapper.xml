@@ -3,7 +3,7 @@
 <mapper namespace="tk.mybatis.web.mapper.TextMessageMapper">
 
     <select id="selectAll" resultType="tk.mybatis.web.model.TextMessage">
-        SELECT * FROM text_message a INNER JOIN base_message b on a.b_id=b.id;
+        SELECT * FROM text_message a left JOIN base_message b on a.b_id=b.id;
     </select>
     <insert id="insert" useGeneratedKeys="true" keyProperty="id" >
         insert text_message(b_id,content,type,keyword) value (

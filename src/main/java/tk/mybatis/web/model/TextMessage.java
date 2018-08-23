@@ -8,7 +8,7 @@ import lombok.Setter;
 public class TextMessage extends BaseMessage {
     @Getter
     @Setter
-    @XStreamOmitField
+
     private Long bId;
 //    @Getter
 //    @Setter
@@ -26,6 +26,8 @@ public class TextMessage extends BaseMessage {
     @Setter
     @XStreamOmitField
     private String keyword;
-
+    @Getter
+    @Setter
+    private Long keyId;
 
 }

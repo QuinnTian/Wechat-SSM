@@ -1,7 +1,6 @@
 package tk.mybatis.web.mapper;
 
-import org.apache.ibatis.annotations.Mapper;
-import sun.plugin2.message.Message;
+
 import tk.mybatis.web.model.TextMessage;
 
 import java.util.List;

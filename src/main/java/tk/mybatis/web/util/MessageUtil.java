@@ -1,8 +1,8 @@
 package tk.mybatis.web.util;
 
-import com.sun.xml.internal.ws.util.xml.XmlUtil;
+
 import com.thoughtworks.xstream.XStream;
-import com.thoughtworks.xstream.annotations.Annotations;
+
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
